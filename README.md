@@ -1,122 +1,268 @@
-# RAG + LLM AI Job Application Agent (Local-first)
+# 🤖 RAG-Powered AI Job Application Agent
 
-A local-first starter project for a Senior Java Developer job search in India. It combines:
-- **RAG:** chunks resume text, creates embeddings with Ollama, stores vectors in ChromaDB, and retrieves relevant resume evidence for a vacancy.
-- **LLM:** uses a locally running Ollama chat model to analyse job fit and draft cover letters grounded in retrieved resume content.
-- **Workflow:** Python CLI, SQLite tracking, Streamlit dashboard, and human approval before application preparation.
+An AI-powered job application assistant built using **Python, Retrieval-Augmented Generation (RAG), Large Language Models (LLMs), ChromaDB and Ollama**.
 
-No paid API key is required when using local Ollama models. You need enough disk space/RAM for the models.
+The system analyses candidate resumes against job descriptions, retrieves relevant professional experience using semantic search, evaluates job compatibility using an LLM, and assists in preparing personalized job applications.
 
-## What is included / not included
-Included: local RAG pipeline, LLM analysis, Chroma vector store, PDF text extraction, job-fit analysis, cover-letter drafting, approval tracking, dashboard and Naukri/LinkedIn search links.
+The project currently targets **Senior Java Developer opportunities across India**, with a human-in-the-loop approval workflow.
 
-Not included: unrestricted Naukri/LinkedIn scraping, CAPTCHA bypass, automatic portal login, or application submission. Their platform access rules and protections must be respected. The sample jobs are fake demo records, not live vacancies. The scoring and LLM analysis are decision-support only, not guarantees.
+---
 
-## 1. Install Python
-Use Python 3.10+ (3.11 recommended).
+## 🚀 Project Overview
 
-## 2. Install Ollama
-Download and install Ollama from https://ollama.com/download .
-Start Ollama, then pull these models in a terminal:
+Finding relevant job opportunities and applying to them consistently can be time-consuming.
 
-```bash
-ollama pull llama3.2:3b
-ollama pull nomic-embed-text
+This project aims to simplify the job search process using Generative AI and intelligent retrieval techniques.
+
+The AI agent combines resume intelligence, semantic search and LLM-based reasoning to:
+
+- Analyse candidate resumes.
+- Extract relevant skills and professional experience.
+- Retrieve relevant resume information using RAG.
+- Analyse job descriptions using an LLM.
+- Evaluate candidate-job compatibility.
+- Identify matching and missing skills.
+- Generate personalized cover letters.
+- Maintain an application approval and tracking workflow.
+
+**Important:** The current version uses sample job listings and manually accessible job descriptions. Naukri and LinkedIn automated discovery and application submission are not implemented.
+
+## 🏗️ System Architecture
+
+```text
+              Candidate Resume (PDF)
+                       |
+                       v
+                Resume Parser
+                       |
+                       v
+                 Text Chunking
+                       |
+                       v
+             Embedding Generation
+               (Nomic Embeddings)
+                       |
+                       v
+                ChromaDB
+              (Vector Database)
+                       |
+                       |
+Job Description ------+
+                       |
+                       v
+                RAG Retrieval
+                       |
+                       v
+             Relevant Resume Context
+                       |
+                       v
+              Local LLM (Ollama)
+                 Llama 3.2
+                       |
+                       v
+             Job Compatibility Analysis
+                       |
+              +--------+--------+
+              |                 |
+              v                 v
+         Skill Matching    Skill Gap Analysis
+              |                 |
+              +--------+--------+
+                       |
+                       v
+             Application Preparation
+                       |
+                       v
+               Human Approval
+                       |
+                       v
+             Application Tracking
 ```
 
-The first model is the local chat LLM; the second creates embedding vectors for RAG. Model names can be changed in `.env`.
+## 🧠 RAG Implementation
 
-Check Ollama:
-```bash
-ollama list
+The project implements a Retrieval-Augmented Generation pipeline to provide context-aware job matching.
+
+### RAG Workflow
+
+**1. Document Ingestion**
+
+The candidate uploads a PDF resume.
+
+**2. Text Extraction**
+
+PDF content is extracted using PyPDF.
+
+**3. Text Chunking**
+
+The extracted content is divided into smaller overlapping chunks to improve retrieval relevance.
+
+**4. Embedding Generation**
+
+The Nomic embedding model converts text chunks into numerical vector representations.
+
+**5. Vector Storage**
+
+Embeddings and associated metadata are stored in ChromaDB.
+
+**6. Semantic Retrieval**
+
+When a job description is analysed, the retrieval engine searches for relevant resume chunks.
+
+**7. Context Augmentation**
+
+The retrieved resume information is combined with the job description and candidate profile.
+
+**8. LLM Generation**
+
+Llama 3.2 analyses the supplied context and generates a structured job compatibility report.
+
+### RAG Technologies
+
+- ChromaDB
+- Nomic Embed Text
+- Ollama
+- Python
+
+## 🤖 LLM Integration
+
+The project uses locally hosted LLMs through Ollama.
+
+| Model | Purpose |
+|---|---|
+| Llama 3.2 (3B) | Job analysis and cover-letter generation |
+| Nomic Embed Text | Text embeddings and semantic retrieval |
+
+The LLM evaluates:
+
+- Relevant technical skills.
+- Professional experience.
+- Job requirements.
+- Missing or unproven skills.
+- Candidate-job compatibility.
+- Application recommendations.
+
+The system instructs the LLM to use retrieved resume evidence and avoid inventing candidate experience.
+
+## 🛠️ Technology Stack
+
+| Category | Technologies |
+|---|---|
+| Programming Language | Python |
+| Generative AI | Llama 3.2 |
+| LLM Runtime | Ollama |
+| RAG Framework | Custom Python RAG pipeline |
+| Embedding Model | Nomic Embed Text |
+| Vector Database | ChromaDB |
+| PDF Processing | PyPDF |
+| Database | SQLite |
+| Frontend | Streamlit |
+| Data Validation | Pydantic |
+| Environment Configuration | Python-dotenv |
+| API Communication | Python Requests |
+
+## ✨ Key Features
+
+### 1. Resume Intelligence
+- Upload PDF resumes.
+- Extract resume text.
+- Split documents into chunks.
+- Generate embeddings.
+- Store resume information in ChromaDB.
+
+### 2. Semantic Job Matching
+- Retrieve relevant resume sections.
+- Analyse job descriptions.
+- Identify matching technical skills.
+- Identify missing or unproven skills.
+- Generate compatibility scores.
+
+### 3. LLM-Based Analysis
+- Context-aware job analysis.
+- Experience suitability assessment.
+- Skill gap identification.
+- Application recommendations.
+
+### 4. Cover Letter Generation
+- Generate personalized cover-letter drafts.
+- Use retrieved resume evidence.
+- Tailor content to job requirements.
+- Avoid unsupported professional claims.
+
+### 5. Human-in-the-Loop Workflow
+- Review job opportunities.
+- Approve application preparation.
+- Skip irrelevant opportunities.
+- Maintain application approval history.
+
+### 6. Interactive Dashboard
+- Resume indexing.
+- Job matching.
+- RAG analysis.
+- Application tracking.
+- AI model connection status.
+
+## 📁 Project Structure
+
+```text
+ai_job_application_agent_rag/
+│
+├── config/
+│   └── profile.json
+│
+├── data/
+│   └── sample_jobs.json
+│
+├── job_agent/
+│   ├── __init__.py
+│   ├── agent.py
+│   ├── config.py
+│   ├── database.py
+│   ├── llm.py
+│   ├── matching.py
+│   ├── models.py
+│   ├── rag.py
+│   ├── resume.py
+│   └── sources.py
+│
+├── output/
+│
+├── chroma_db/
+│
+├── .env.example
+├── .gitignore
+├── dashboard.py
+├── main.py
+├── requirements.txt
+└── README.md
 ```
 
-## 3. Set up this project
+## ⚙️ Installation and Setup
 
-### Windows PowerShell
-```powershell
+### Prerequisites
+
+- Python 3.10+
+- VS Code
+- Ollama
+- Git
+
+### Step 1: Clone Repository
+
+```bash
+git clone YOUR_GITHUB_REPOSITORY_URL
 cd ai_job_application_agent_rag
-py -m venv .venv
-.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-Copy-Item .env.example .env
 ```
 
-### macOS / Linux
-```bash
-cd ai_job_application_agent_rag
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env
-```
+### Step 2: Create Virtual Environment
 
-Edit `config/profile.json` with your accurate experience, skills and contact details. Do not list skills you cannot substantiate.
+Windows:
 
-## 4. Index your resume (RAG ingestion)
-Put your PDF resume somewhere on your computer, then run:
-
-```bash
-python main.py init
-python main.py index-resume "/path/to/your_resume.pdf"
-```
-
-Windows example:
 ```powershell
-python main.py index-resume "C:\Users\YourName\Documents\resume.pdf"
+python -m venv venv
+venv\Scripts\activate
 ```
 
-The program extracts text, splits it into overlapping chunks, creates embeddings with Ollama, and stores them in the local Chroma database. The source PDF is not uploaded to a cloud API.
+Linux / macOS:
 
-Scanned image-only PDFs need OCR; this version supports selectable text PDFs.
-
-## 5. Run RAG + LLM job analysis
 ```bash
-python main.py discover
-```
-
-This loads sample jobs, retrieves relevant resume chunks for each vacancy, sends only the relevant evidence plus the job details to the local LLM, and stores the analysis and score in SQLite.
-
-The first run can take longer while the model loads. Sample jobs are not live vacancies.
-
-## 6. Open the dashboard
-```bash
-streamlit run dashboard.py
-```
-Open the local URL shown in the terminal, normally http://localhost:8501.
-
-Tabs:
-- Discover & match: run LLM analysis and inspect retrieved resume evidence.
-- Resume RAG: upload and index your PDF.
-- Application tracker: approve preparation, skip, and draft a cover letter.
-
-## 7. Other CLI commands
-```bash
-python main.py links
-python main.py list
-python main.py review
-python main.py history
-python main.py cover-letter DEMO001
-```
-
-## 8. Add real job descriptions
-For this starter, add a job object to `data/sample_jobs.json` using the same fields as the examples. Give it a unique ID, accurate description, source and legitimate public job URL. Then run `python main.py discover` again. For production, add permitted job-board APIs or user-authorized imports.
-
-## 9. How RAG works in this project
-1. **Ingestion:** PDF text is extracted.
-2. **Chunking:** text is split into overlapping pieces.
-3. **Embedding:** `nomic-embed-text` converts chunks into vectors.
-4. **Indexing:** ChromaDB persists vectors and metadata locally.
-5. **Retrieval:** the job's title, requirements and description become a query; top relevant resume chunks are retrieved.
-6. **Generation:** `llama3.2:3b` receives the job plus retrieved evidence and returns a structured analysis.
-7. **Grounding:** prompt instructs the model not to invent experience. Always verify outputs; LLMs can still make mistakes.
-
-## 10. Troubleshooting
-- **Connection refused / Ollama unavailable:** open Ollama or run `ollama serve` in a separate terminal.
-- **Model not found:** run `ollama pull llama3.2:3b` and `ollama pull nomic-embed-text`.
-- **Slow responses / out of memory:** use a smaller supported chat model and update `OLLAMA_CHAT_MODEL` in `.env`; close memory-heavy applications.
-- **No text from resume:** it may be scanned; OCR support is a future enhancement.
-- **Windows PowerShell activation blocked:** run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` if allowed by your device policy, or use Command Prompt and `venv\\Scripts\\activate.bat`.
-
-## Privacy
-The LLM and embedding calls go to your local Ollama server. Keep `.env`, your resume, profile and local database private. Do not publish them in a public repository. This app never asks for Naukri or LinkedIn passwords.
+python3 -m venv v
