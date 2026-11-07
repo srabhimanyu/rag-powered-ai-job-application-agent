@@ -1,0 +1,41 @@
+[
+  {
+    "id": "DEMO001",
+    "company": "Example Technology Ltd",
+    "title": "Senior Java Developer",
+    "location": "Bengaluru, India",
+    "experience_min": 5,
+    "experience_max": 8,
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Microservices",
+      "REST API",
+      "SQL",
+      "Kafka"
+    ],
+    "description": "Build and maintain Java microservices using Spring Boot, REST APIs, SQL and Kafka. Work with distributed systems, code reviews and production support.",
+    "source": "Sample",
+    "url": "https://www.naukri.com/",
+    "posted": "Sample listing - not a live vacancy"
+  },
+  {
+    "id": "DEMO002",
+    "company": "Example Consulting",
+    "title": "Java Spring Boot Engineer",
+    "location": "Pune, India",
+    "experience_min": 4,
+    "experience_max": 7,
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "Microservices",
+      "AWS"
+    ],
+    "description": "Develop backend services using Java, Spring Boot, Hibernate and AWS. Collaborate with product and QA teams.",
+    "source": "Sample",
+    "url": "https://www.linkedin.com/jobs/",
+    "posted": "Sample listing - not a live vacancy"
+  }
+]

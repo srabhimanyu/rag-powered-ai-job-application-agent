@@ -1,0 +1,10 @@
+venv/
+.venv/
+.env
+__pycache__/
+*.py[cod]
+*.db
+chroma_db/
+output/*
+!output/.gitkeep
+.streamlit/

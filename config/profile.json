@@ -1,0 +1,39 @@
+{
+  "name": "Your Name",
+  "email": "",
+  "phone": "",
+  "experience_years": 6,
+  "current_role": "Senior Java Developer",
+  "preferred_location": "India",
+  "preferred_roles": [
+    "Senior Java Developer",
+    "Java Developer",
+    "Java Spring Boot Developer",
+    "Backend Developer"
+  ],
+  "skills": [
+    "Java",
+    "Spring Boot"
+  ],
+  "summary": "Senior Java Developer with approximately 6 years of professional experience, specializing in Java and Spring Boot development. Interested in senior backend and Java development opportunities across India.",
+  "skills_to_confirm_before_adding": [
+    "Microservices",
+    "REST API",
+    "Hibernate",
+    "JPA",
+    "SQL",
+    "MySQL",
+    "PostgreSQL",
+    "Kafka",
+    "Multithreading",
+    "Data Structures",
+    "System Design",
+    "Docker",
+    "Kubernetes",
+    "AWS",
+    "JavaScript",
+    "React"
+  ],
+  "resume_file": "",
+  "notes": "Only keep technologies in the skills list if you have hands-on professional experience and can discuss them confidently in an interview. Move confirmed skills from skills_to_confirm_before_adding into skills."
+}

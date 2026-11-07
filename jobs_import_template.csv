@@ -1,0 +1,2 @@
+id,company,title,location,experience_min,experience_max,skills,description,source,url,posted
+MYJOB001,Example Company,Senior Java Developer,Bengaluru India,5,8,Java|Spring Boot|Kafka,Build Java microservices,Manual,https://example.com/job,Today
